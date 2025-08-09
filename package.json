@@ -1,0 +1,75 @@
+{
+    "name": "pomodoro-timer",
+    "displayName": "番茄钟计时器",
+    "description": "一个智能的番茄钟VS Code插件，帮助你保持专注和健康的工作节奏",
+    "version": "1.0.0",
+    "engines": {
+        "vscode": "^1.74.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "pomodoro.toggle",
+                "title": "启动/暂停番茄钟",
+                "category": "番茄钟"
+            },
+            {
+                "command": "pomodoro.rest",
+                "title": "手动休息",
+                "category": "番茄钟"
+            },
+            {
+                "command": "pomodoro.reset",
+                "title": "重置番茄钟",
+                "category": "番茄钟"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "pomodoro.toggle",
+                "key": "ctrl+alt+shift+p",
+                "mac": "cmd+alt+shift+p",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "pomodoro.rest",
+                "key": "ctrl+alt+shift+r",
+                "mac": "cmd+alt+shift+r",
+                "when": "editorTextFocus"
+            }
+        ],
+        "menus": {
+            "commandPalette": [
+                {
+                    "command": "pomodoro.toggle",
+                    "title": "🍅 启动/暂停番茄钟"
+                },
+                {
+                    "command": "pomodoro.rest",
+                    "title": "⏰ 手动休息"
+                },
+                {
+                    "command": "pomodoro.reset",
+                    "title": "🔄 重置番茄钟"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.74.0",
+        "@types/node": "16.x",
+        "typescript": "^4.9.4"
+    }
+}
