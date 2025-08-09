@@ -5,7 +5,7 @@
 ## ✨ 特性
 
 - **🎯 90分钟专注模式**：完整的90分钟工作周期，适合深度编程任务
-- **⚡ 智能休息提醒**：每1-2分钟随机间隔提醒休息10秒，保护眼部健康
+- **⚡ 智能休息提醒**：每3-5分钟随机间隔提醒休息10秒，保护眼部健康
 - **⏸️ 暂停/恢复功能**：支持暂停和恢复，灵活应对突发情况
 - **📊 实时状态显示**：状态栏实时显示剩余时间和当前状态
 - **🔄 一键重置**：快速重置计时器，重新开始
@@ -17,11 +17,6 @@
 2. 按 `Ctrl+Shift+X` 打开扩展面板
 3. 搜索 "Pomodoro Timer"
 4. 点击安装
-
-或者通过命令行安装：
-```bash
-code --install-extension your-publisher.pomodoro
-```
 
 ## 🎮 使用方法
 
@@ -79,8 +74,8 @@ code --install-extension your-publisher.pomodoro
 ```typescript
 {
   totalDuration: 90 * 60 * 1000,    // 90分钟总时长
-  intervalMin: 1 * 60 * 1000,       // 最小间隔1分钟
-  intervalMax: 2 * 60 * 1000,       // 最大间隔2分钟
+  intervalMin: 3 * 60 * 1000,       // 最小间隔1分钟
+  intervalMax: 5 * 60 * 1000,       // 最大间隔2分钟
   restDuration: 10 * 1000           // 休息10秒
 }
 ```

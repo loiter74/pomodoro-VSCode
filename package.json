@@ -1,11 +1,12 @@
 {
-    "name": "pomodoro-timer",
-    "displayName": "番茄钟计时器",
-    "description": "一个智能的番茄钟VS Code插件，帮助你保持专注和健康的工作节奏",
+    "name": "micro-pomodoro",
+    "displayName": "节奏番茄钟",
+    "description": "一个专注于短期连续工作的智能的番茄钟VS Code插件，帮助你保持专注和健康的工作节奏",
     "version": "1.0.0",
     "engines": {
         "vscode": "^1.74.0"
     },
+    "publisher": "lun077",
     "categories": [
         "Other"
     ],
