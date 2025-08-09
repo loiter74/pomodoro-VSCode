@@ -21,8 +21,8 @@ let pomodoroState: PomodoroState = {
     startTime: 0,
     pausedTime: 0,
     totalDuration: 90 * 60 * 1000, // 90分钟
-    intervalMin: 3 * 60 * 1000,    // 3分钟
-    intervalMax: 5 * 60 * 1000,    // 5分钟
+    intervalMin: 0 * 60 * 1000,    // 3分钟
+    intervalMax: 1 * 60 * 1000,    // 5分钟
     restDuration: 10 * 1000        // 10秒
 };
 
@@ -144,57 +144,71 @@ function getElapsedTime(): number {
 }
 
 // 触发休息提醒
-function triggerRestBreak() {
+async function triggerRestBreak() {
     if (!pomodoroState.isActive || pomodoroState.isPaused) {return;}
 
     // 播放提示音（通过信息框模拟）
     playNotificationSound();
-    
-    // 显示休息提醒 - 2秒后自动消失
-    vscode.window.withProgress({
-        location: vscode.ProgressLocation.Notification,
-        title: "⏰ 休息时间到了！请休息10秒钟～",
-        cancellable: false
-    }, async (progress) => {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                resolve(undefined);
-                startRestCountdown(); // 2秒后开始休息倒计时
-            }, 3000);
-        });
-    });
+
+    // 立即开始休息倒计时
+    startRestCountdown();
+
+
 }
 
 // 开始休息倒计时
 function startRestCountdown() {
-    let countdown = 10;
+    let statusBarTimeout: NodeJS.Timeout | undefined;
     
-    const countdownInterval = setInterval(() => {
-        if (!pomodoroState.isActive || pomodoroState.isPaused) {
-            clearInterval(countdownInterval);
-            return;
-        }
-        vscode.window.setStatusBarMessage(`🍅 休息中...`, 10000);
-        if (countdown > 0) {
-            countdown--;
-        } else {
-            clearInterval(countdownInterval);
-            // 使用Progress API显示休息结束提醒
-            vscode.window.withProgress({
-                location: vscode.ProgressLocation.Notification,
-                title: "✨ 休息结束，继续加油！",
-                cancellable: false
-            }, async (progress) => {
-                return new Promise(resolve => {
+    vscode.window.withProgress({
+        location: vscode.ProgressLocation.Notification,
+        title: "⏰ 休息时间",
+        cancellable: false
+    }, async (progress) => {
+        return new Promise(resolve => {
+            let countdown = 10;
+            
+            const countdownInterval = setInterval(() => {
+                if (!pomodoroState.isActive || pomodoroState.isPaused) {
+                    clearInterval(countdownInterval);
+                    if (statusBarTimeout) {
+                        clearTimeout(statusBarTimeout);
+                    }
+                    vscode.window.setStatusBarMessage(''); // 清除状态栏
+                    resolve(undefined);
+                    return;
+                }
+                
+                // 清除之前的状态栏超时
+                if (statusBarTimeout) {
+                    clearTimeout(statusBarTimeout);
+                }
+                
+                
+                progress.report({ message: `请休息 ${countdown} 秒钟～ 🌱` });
+                
+                countdown--;
+                
+                if (countdown < 0) {
+                    clearInterval(countdownInterval);
+                    if (statusBarTimeout) {
+                        clearTimeout(statusBarTimeout);
+                    }
+                    
+                    // 显示休息结束消息
+                    vscode.window.setStatusBarMessage('✨ 休息结束！', 2000);
+                    progress.report({ message: "休息结束，继续加油！💪" });
+                    
                     setTimeout(() => {
                         resolve(undefined);
-                        scheduleNextBreak(); 
-                    }, 0);
-                });
-            });
-        }
-    }, 1000);
+                        scheduleNextBreak();
+                    }, 1000);
+                }
+            }, 1000);
+        });
+    });
 }
+
 
 // 安排下一次休息
 function scheduleNextBreak() {
