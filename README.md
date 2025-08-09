@@ -1,71 +1,126 @@
-# pomodoro README
+# 🍅 Pomodoro Timer - VS Code 番茄钟插件
 
-This is the README for your extension "pomodoro". After writing up a brief description, we recommend including the following sections.
+一个专为开发者设计的智能番茄钟插件，帮助你在编码过程中保持专注和健康的工作节奏。
 
-## Features
+## ✨ 特性
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **🎯 90分钟专注模式**：完整的90分钟工作周期，适合深度编程任务
+- **⚡ 智能休息提醒**：每1-2分钟随机间隔提醒休息10秒，保护眼部健康
+- **⏸️ 暂停/恢复功能**：支持暂停和恢复，灵活应对突发情况
+- **📊 实时状态显示**：状态栏实时显示剩余时间和当前状态
+- **🔄 一键重置**：快速重置计时器，重新开始
+- **🎉 完成庆祝**：90分钟完成后的成就感提醒
 
-For example if there is an image subfolder under your extension project workspace:
+## 🚀 安装
 
-\!\[feature X\]\(images/feature-x.png\)
+1. 打开 VS Code
+2. 按 `Ctrl+Shift+X` 打开扩展面板
+3. 搜索 "Pomodoro Timer"
+4. 点击安装
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+或者通过命令行安装：
+```bash
+code --install-extension your-publisher.pomodoro
+```
 
-## Requirements
+## 🎮 使用方法
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+### 基本操作
 
-## Extension Settings
+- **启动番茄钟**：点击状态栏的番茄钟图标或使用命令 `Pomodoro: Toggle`
+- **暂停/恢复**：再次点击状态栏图标
+- **手动休息**：使用命令 `Pomodoro: Rest`
+- **重置计时器**：使用命令 `Pomodoro: Reset`
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### 命令面板
 
-For example:
+按 `Ctrl+Shift+P` 打开命令面板，输入以下命令：
 
-This extension contributes the following settings:
+- `Pomodoro: Toggle` - 启动/暂停/恢复番茄钟
+- `Pomodoro: Rest` - 手动触发休息
+- `Pomodoro: Reset` - 重置番茄钟
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+### 状态栏指示器
 
-## Known Issues
+插件会在VS Code状态栏右侧显示当前状态：
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- `🍅 番茄钟: 未启动` - 计时器未启动
+- `🍅 番茄钟: 89:30` - 正在运行，显示剩余时间
+- `⏸️ 番茄钟: 45:20 (已暂停)` - 已暂停状态
 
-## Release Notes
+## ⚙️ 工作流程
 
-Users appreciate release notes as you update your extension.
+1. **启动阶段**：点击状态栏开始90分钟的专注时间
+2. **工作阶段**：专注编程，插件会在1-2分钟随机间隔提醒休息
+3. **休息阶段**：收到提醒后休息10秒，保护眼部健康
+4. **完成阶段**：90分钟完成后获得成就提醒，可选择继续下一轮
 
-### 1.0.0
+## 🎯 设计理念
 
-Initial release of ...
+### 为什么是90分钟？
+- 符合人体自然的专注周期（ultradian rhythms）
+- 适合处理复杂的编程任务
+- 避免传统25分钟番茄钟频繁打断思路
 
-### 1.0.1
+### 为什么是随机间隔？
+- 避免固定时间的心理预期
+- 更自然的休息节奏
+- 减少对工作流的干扰
 
-Fixed issue #.
+### 为什么只休息10秒？
+- 足够缓解眼部疲劳
+- 不会打断编程思路
+- 养成定期休息的习惯
 
-### 1.1.0
+## 🔧 配置选项
 
-Added features X, Y, and Z.
+目前插件使用以下默认设置：
+
+```typescript
+{
+  totalDuration: 90 * 60 * 1000,    // 90分钟总时长
+  intervalMin: 1 * 60 * 1000,       // 最小间隔1分钟
+  intervalMax: 2 * 60 * 1000,       // 最大间隔2分钟
+  restDuration: 10 * 1000           // 休息10秒
+}
+```
+
+## 📝 使用技巧
+
+1. **开始编程前启动**：在开始重要编程任务前启动番茄钟
+2. **遵循休息提醒**：收到休息提醒时请暂停编程，让眼睛休息
+3. **合理使用暂停**：遇到会议或紧急事务时可以暂停计时器
+4. **完成后庆祝**：90分钟完成是一个值得庆祝的成就！
+
+## 🤝 贡献
+
+欢迎提交问题和功能请求！
+
+1. Fork 这个项目
+2. 创建你的功能分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交你的更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 打开一个 Pull Request
+
+## 📄 许可证
+
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
+
+## 🐛 问题反馈
+
+如果你遇到任何问题或有功能建议，请在 [GitHub Issues](https://github.com/loiter74/pomodoro-VSCode/issues) 中提交。
+
+## 📚 更新日志
+
+### v1.0.0
+- ✨ 初始版本发布
+- 🍅 90分钟番茄钟功能
+- ⏸️ 暂停/恢复功能
+- 🔄 重置功能
+- 📊 状态栏实时显示
 
 ---
 
-## Following extension guidelines
+**享受专注编程的乐趣！** 🚀
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+如果这个插件对你有帮助，请给个 ⭐ 支持一下！
