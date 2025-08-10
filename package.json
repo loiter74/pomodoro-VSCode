@@ -2,11 +2,12 @@
     "name": "micro-pomodoro",
     "displayName": "节奏番茄钟",
     "description": "一个专注于短期连续工作的智能的番茄钟VS Code插件，帮助你保持专注和健康的工作节奏",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "engines": {
         "vscode": "^1.74.0"
     },
     "publisher": "lun077",
+    "icon": "images/pomodoro_icon.png",
     "categories": [
         "Other"
     ],

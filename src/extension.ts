@@ -21,8 +21,8 @@ let pomodoroState: PomodoroState = {
     startTime: 0,
     pausedTime: 0,
     totalDuration: 90 * 60 * 1000, // 90分钟
-    intervalMin: 0 * 60 * 1000,    // 3分钟
-    intervalMax: 1 * 60 * 1000,    // 5分钟
+    intervalMin: 3 * 60 * 1000,    // 3分钟
+    intervalMax: 5 * 60 * 1000,    // 5分钟
     restDuration: 10 * 1000        // 10秒
 };
 
